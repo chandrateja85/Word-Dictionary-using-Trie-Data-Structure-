@@ -1,0 +1,137 @@
+
+body {
+    background-color: black;
+    font-family: 'Quicksand', sans-serif;font-weight:80px;
+    color:#E2DCC8 ;
+
+}
+.container{
+    width: 100%;
+    margin: auto;
+}
+.navbar{
+    width: 100% !important;
+}
+.trie_image {
+    border-radius: 20px;
+    overflow: hidden;
+}
+.ins_search{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
+    margin-bottom: 50px;
+    border-radius: 20px;
+    margin-top: 50px;
+    margin-bottom: 100px;
+    color: black;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.allwords_display {
+    background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
+    border-radius: 20px;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    /* margin-top: 50px; */
+}
+.suggestion_area {
+    background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);  
+    height: 100px;
+    text-align: center;
+    border-radius: 20px;
+    width: 500px;
+    /* margin-top: 50px; */
+    /* margin-bottom: 200px; */
+}
+
+.bg_custom1 {
+    background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);  
+}
+.bg_custom2{
+    background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);  
+
+}
+.section2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-bottom: 50px;
+    border-radius: 20px;
+    margin-top: 50px;
+    margin-bottom: 150px;
+    color: black;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.card {
+    width: 25rem; 
+    height:22rem
+}
+.matter {
+    border-radius: 20px;
+}
+.under_line {
+    border-bottom: 2px solid blue;
+    width:300px;
+}
+.authorimage img {
+    width: 150px; /* Adjust the width as needed */
+    height: 150px; /* Adjust the height as needed */
+    border-radius: 50%; /* Optional: Make the image circular */
+}
+@media (max-width: 575px) {
+    .container {
+        margin-right: 0;
+        margin-left: 0;
+        width: 100%;
+    }
+    .description {
+        flex-direction: column !important;
+        text-align: center;
+        justify-content: space-around;
+        align-items:center;
+        margin: auto;
+    }
+    .description h4 {
+        font-size: 16px !important;
+        text-align: center;
+        margin: 0px !important;
+        padding: 0px !important;;
+    }
+    .nav {
+        margin:0px;
+        width: 100%;
+    }
+    .card{
+        width: 90%;
+        margin-top: 10px;
+    }
+    .ins_search{
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    .section2{
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        min-height: 300px;
+    }
+    .suggestion_area,.allwords_display {
+        width: 90%;
+    }
+    .application_header h5{
+        font-size: 35px !important;
+    }
+    .page-footer .authorimage img{
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+
+    }
+    
+}
+
