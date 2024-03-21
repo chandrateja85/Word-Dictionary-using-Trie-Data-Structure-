@@ -37,11 +37,16 @@
     </style>
 </head>
 <body>
+    <div id="preloader">
+        <img src="{{ url_for('static', filename='resources/dictionary_2.gif') }}">
+    </div>
+    
     <!-- Navbar in Bootstrap-->
     <nav class="navbar navbar-dark bg-dark">
         <a href="#" class="navbar-brand">Word Dictionary Using Trie</a>
     </nav>
     <div class="container">
+        
         <div class="container">
             <div class="row description">
                 <div class="col d-flex justify-content-center align-items-center p-4 animated zoomIn delay-0.5s" style="border-radius: 20px; font-family: 'Quicksand', sans-serif;font-weight:80px;">
@@ -53,26 +58,34 @@
                     <img src="{{ url_for('static', filename='resources/trie_img.png') }}" class="img-fluid">
                 </div>
             </div>
+           
+        </div>
+        <div class="gif_area">
+            <h1>Auto Suggestions</h1>
+               
+            <img src="{{ url_for('static', filename='resources/auto_suggestion_gif.gif') }}">
         </div>
         
           
     <div class="ins_search">
-        <form action="/save" method="post">
+        <form action="/save" method="post" onsubmit="return validateWordInput()">
             <div class="form-group">
               <label for="wordInput">Enter the word to insert</label>
               <input type="text" class="form-control text_box" id="wordInput" name="word" placeholder="Enter word">
             </div>
             <button type="submit" class="btn btn-primary buttons">Insert</button>
             {% if message %}
+            <div class="mt-3">
                 <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
                     {{ message }}
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+            </div>
             {% endif %}
         </form>
-        <form action="/search" method="post" class="mt-3">
+        <form action="/search" method="post" class="mt-3"  onsubmit="return validateSearchInput()">
             <div class="form-group">
               <label for="searchInput">Enter the word to search</label>
               <input type="text" class="form-control" id="searchInput" name="search_word" placeholder="Enter word to search">
@@ -101,7 +114,7 @@
         </div>
 <div class="section2">
 <div class="allwords_display">
-        <form action="/getallwords" method="post" class="mt-3">
+        <form action="/getallwords" method="post" class="mt-3" id="getAllWordsForm">
             <button type="submit" class="btn btn-primary">Get all words</button>
         </form>
         {% if all_words %}
@@ -121,7 +134,7 @@
 
       <div class="suggestion_area">  
         <h3>Auto Suggestions</h3>
-        <form action="/getprefixes" method="post" class="mt-3">
+        <form action="/getprefixes" method="post" class="mt-3" onsubmit="return validateSuggestionsInput()">
             <input type="text" class="form-control" id="suggestionsInput" name="suggestions_prefix" placeholder="Enter the word here">
         </form>
         <div id="suggestionsList" class="bg_custom2">
@@ -189,10 +202,32 @@
             <img src="{{ url_for('static', filename='resources/teja.jpg') }}">
         </div>
     </footer>
+    <script>
+        // JavaScript code to prevent form submission on page refresh
+        window.onload = function() {
+            if (window.history.replaceState) {
+                window.history.replaceState(null, null, window.location.href);
+            }
+        }
+    </script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    // Function to save scroll position before page refresh
+    window.addEventListener('beforeunload', function() {
+        localStorage.setItem('scrollPosition', window.pageYOffset);
+    });
 
+    // Function to set scroll position after page load
+    window.addEventListener('load', function() {
+        var scrollPosition = localStorage.getItem('scrollPosition');
+        if (scrollPosition !== null) {
+            window.scrollTo(0, scrollPosition);
+            localStorage.removeItem('scrollPosition'); // Remove stored scroll position after setting it
+        }
+    });
+</script>
 <script>
     $(document).ready(function(){
         // Previous JavaScript code for suggestionsInput
@@ -228,9 +263,61 @@
         // New JavaScript code for closeAllWords button
         $('#closeAllWords').click(function(){
             $('#allWordsList').remove();
+            window.location.href = '/';
         });
+        
     });
+
+
+    // Function to validate the word input field
+    function validateWordInput() {
+        var wordInput = document.getElementById('wordInput').value;
+        var regex = /^[a-zA-Z]+$/; // Regular expression to match only letters
+        if (!regex.test(wordInput)) {
+            alert('Please enter a valid word without spaces or digits.');
+            return false;
+        }
+        return true;
+    }
+
+    // Function to validate the search input field
+    function validateSearchInput() {
+        var searchInput = document.getElementById('searchInput').value;
+        var regex = /^[a-zA-Z]+$/; // Regular expression to match only letters
+        if (!regex.test(searchInput)) {
+            alert('Please enter a valid word without spaces or digits.');
+            return false;
+        }
+        return true;
+    }
+    // Function to validate the suggestions input field
+    function validateSuggestionsInput() {
+        var suggestionsInput = document.getElementById('suggestionsInput').value;
+        var regex = /^[a-zA-Z]+$/; // Regular expression to match only letters
+        if (!regex.test(suggestionsInput)) {
+            alert('Please enter a valid word without spaces or digits.');
+            return false;
+        }
+        return true;
+    }
+
 </script>
+<script>
+    // JavaScript code to show and hide the preloader
+document.onreadystatechange = function () {
+    var state = document.readyState;
+    if (state == 'interactive') {
+        // Show the preloader when the page starts loading
+        document.getElementById('preloader').style.visibility = "visible";
+    } else if (state == 'complete') {
+        // Hide the preloader when the page has finished loading
+        document.getElementById('preloader').style.visibility = "hidden";
+    }
+};
+
+</script>
+
+
 
 </body>
 </html>

@@ -5,9 +5,20 @@ body {
     color:#E2DCC8 ;
 
 }
+#preloader img {
+    background-size:50%;
+    height: 100vh;
+    width: 100%;
+    position:fixed;
+    z-index: 100;
+}
 .container{
     width: 100%;
     margin: auto;
+    margin-top: 0px;
+}
+.gif_area{
+    text-align: center;
 }
 .navbar{
     width: 100% !important;
@@ -28,6 +39,7 @@ body {
     color: black;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
+
 .allwords_display {
     background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
     border-radius: 20px;
@@ -113,6 +125,15 @@ body {
         margin:0px;
         width: 100%;
     }
+    .gif_area {
+        width: 90%;
+        overflow: hidden;
+        text-align: center;
+        margin: auto;
+    }
+    .gif_area h1 {
+        font-size: 24px !important;
+    }
     .card{
         width: 90%;
         margin-top: 10px;
@@ -126,11 +147,14 @@ body {
     .section2{
         flex-direction: column;
         align-items: center;
-        justify-content: space-around;
+        justify-content:space-around;
         min-height: 300px;
     }
     .suggestion_area,.allwords_display {
         width: 90%;
+        max-height: 200px;
+        overflow-y: auto;
+       
     }
     .application_header h5{
         font-size: 35px !important;

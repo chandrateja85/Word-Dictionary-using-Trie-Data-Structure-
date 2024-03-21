@@ -89,7 +89,13 @@ try:
     worddict = load_trie(trie_filename)
 except FileNotFoundError:
     worddict = Trie()
+    dictionary_file = 'Dictionary_Words_github.txt'
+    with open(dictionary_file, 'r') as file:
+        for line in file:
+            word = line.strip().lower()  # Convert to lowercase and remove leading/trailing spaces
+            worddict.insertNode(word)
     save_trie(worddict, trie_filename)  # Save trie data to file
+
 
 @app.route('/')
 def index():
@@ -101,7 +107,7 @@ def save_data():
         word = request.form['word']
         worddict.insertNode(word)
         save_trie(worddict, trie_filename)  # Save trie data to file
-        message = 'Word "{}" has been saved to trie.'.format(word)
+        message = '{} saved to trie'.format(word)
     else:
         message = ''
     return render_template('index.html', message=message)
