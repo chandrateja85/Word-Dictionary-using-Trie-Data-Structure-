@@ -113,12 +113,12 @@
         {% endif %}
         </div>
 <div class="section2">
-<div class="allwords_display">
+<!-- <div class="allwords_display">
         <form action="/getallwords" method="post" class="mt-3" id="getAllWordsForm">
             <button type="submit" class="btn btn-primary">Get all words</button>
-        </form>
-        {% if all_words %}
-    <div id="allWordsList" class="mt-3 bg_custom1">
+        </form> -->
+        <!-- {% if all_words %} -->
+    <!-- <div id="allWordsList" class="mt-3 bg_custom1">
         <button type="button" class="close" id="closeAllWords" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -128,9 +128,9 @@
                 <li>{{ word }}</li>
             {% endfor %}
         </ol>
-    </div>
-    {% endif %}
-</div>
+    </div> -->
+    <!-- {% endif %} -->
+<!-- </div> -->
 
       <div class="suggestion_area">  
         <h3>Auto Suggestions</h3>
@@ -271,7 +271,7 @@
 
     // Function to validate the word input field
     function validateWordInput() {
-        var wordInput = document.getElementById('wordInput').value;
+        var wordInput = document.getElementById('wordInput').value.toLowerCase(); // Convert input to lowercase
         var regex = /^[a-zA-Z]+$/; // Regular expression to match only letters
         if (!regex.test(wordInput)) {
             alert('Please enter a valid word without spaces or digits.');
@@ -282,7 +282,7 @@
 
     // Function to validate the search input field
     function validateSearchInput() {
-        var searchInput = document.getElementById('searchInput').value;
+        var searchInput = document.getElementById('searchInput').value.toLowerCase(); // Convert input to lowercase
         var regex = /^[a-zA-Z]+$/; // Regular expression to match only letters
         if (!regex.test(searchInput)) {
             alert('Please enter a valid word without spaces or digits.');

@@ -104,7 +104,7 @@ def index():
 @app.route('/save', methods=['POST'])
 def save_data():
     if request.method == 'POST':
-        word = request.form['word']
+        word = request.form['word'].lower()
         worddict.insertNode(word)
         save_trie(worddict, trie_filename)  # Save trie data to file
         message = '{} saved to trie'.format(word)
@@ -115,7 +115,7 @@ def save_data():
 @app.route('/search', methods=['POST'])
 def search_word():
     if request.method == 'POST':
-        search_word = request.form['search_word'].strip()  # Remove leading/trailing spaces
+        search_word = request.form['search_word'].strip().lower()  # Remove leading/trailing spaces
         if not search_word:
             # If search word is empty, return to the index without performing the search
             return render_template('index.html')
@@ -132,7 +132,7 @@ from flask import jsonify
 
 @app.route('/getprefixes', methods=['POST'])
 def get_prefixes():
-    prefix = request.form['suggestions_prefix']
+    prefix = request.form['suggestions_prefix'].lower()
     suggestions = worddict.print_word_with_prefix(prefix)
     return {'suggestions': suggestions}
 
